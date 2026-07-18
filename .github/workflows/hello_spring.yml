@@ -22,8 +22,8 @@ jobs:
               java-version: '25'
  
   
-           - name: Build with Test
-             Working-directory: docker\app1-hello\springboot\hello-spring
+           - name: Build with Test 
+             working-directory: docker\app1-hello\springboot\hello-spring
              run: mvn -b clean verify
             
            - name: Upload test results
@@ -71,5 +71,5 @@ jobs:
               tags: 
                 ${{ secrets.DOCKER_USERNAME }}/hello-spring:latest
                 ${{ secrets.DOCKER_USERNAME }}/hello-spring:${{ github.sha }}
-                ${{ secrets.DOCKER_USERNAME }}/hello-spring:${{ github.ref_name }}
+                ${{ secrets.DOCKER_USERNAME }}/hello-spring:${{ github.ref_name }}  
             
