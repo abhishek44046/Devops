@@ -19,7 +19,7 @@ jobs:
       - name: Build with Test
         working-directory: docker/app1-hello/springboot/hello-spring
 
-        run: mvn -b clean verify
+        run: mvn -B clean verify
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Jar For Docker
         working-directory: docker/app1-hello/springboot/hello-spring
-        run: mvn -b clean package -DskipTests
+        run: mvn -B clean package -DskipTests
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
