@@ -1,0 +1,57 @@
+name: Hello Spring boot app to docker
+
+
+on:
+  push:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            
+           - name: Checkout code
+             uses: actions/checkout@v4     
+
+
+
+
+           - name: setup JDK
+             uses: actions/setup-java@v6
+             with:
+             distribution: 'temurin' # See 'Supported distributions' for available options
+             java-version: '25'
+ 
+  
+           - name: Build with Test
+             Working-directory: docker\app1-hello\springboot\hello-spring
+             run: mvn -b clean verify
+            
+           - name: Upload test results
+             uses: actions/upload-artifact@v4
+             with:
+             name: test-results
+             path: docker\app1-hello\springboot\hello-spring\target\surefire-reports
+
+           
+            
+
+jobs:
+    Docker-build-push:
+        runs-on: ubuntu-latest
+        needs: build 
+        steps:
+            
+            - name: Checkout code
+              run: actions/checkout@v4
+
+            -name: setup JDK
+                 uses: actions/setup-java@v3
+
+           -name: Build with Test
+              run: mvn clean install
+            
+            -name: Upload test results
+              uses: actions/upload-artifact@v4
+
+              -name: Build Docker image
+            
