@@ -30,7 +30,7 @@ jobs:
 
 
            - name: Run smoke tests
-             working-directory: docker/app1-hello/python/hello-python
+             working-directory: docker/app1-hello/python
              run: python -m py_compile main.py
                    
 
